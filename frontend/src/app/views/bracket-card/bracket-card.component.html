@@ -1,0 +1,21 @@
+<div #bktcard class="bktcard">
+    <div class="bktcard__content">
+        <div class="columns">
+            <div class="column">
+                <h4 class="col-title">Braket Id</h4>
+                <h4 class="bktcard__id">{{ id }}</h4>
+            </div>
+            <div class="column">
+                <h4 class="col-title">Date</h4>
+                <h4 class="bktcard__date">{{ date | date: 'dd/MM/yyyy' }}</h4>
+            </div>
+        </div>
+        <div #bodytext class="bktcard__body">
+            <p>{{ info}}</p>
+            <div #truncator class="fade-out-truncation">
+            </div>
+        </div>
+    </div>
+    <div class="bktcard__editbutton" [routerLink]="id"><i class="fa fa-edit"></i></div>
+    <div class="bktcard__deletebutton" (click)="fun_Delete_Bracket(id)"></div>
+</div>

@@ -1,0 +1,219 @@
+@import './main-styles.scss';
+*:focus {
+    outline: none;
+}
+
+.wrapper-root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+
+    .wrapper {
+        flex-grow: 1;
+        overflow-y: scroll;
+    }
+}
+
+.main-header {
+    width: 100%;
+    height: 68px;
+    background: linear-gradient(to right, $pink, $blue);
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    box-shadow: 0px 0px 10px 0px rgba(#000, 0.5);
+
+    .navbar {
+        background: transparent;
+    }
+    a.navbar-item:hover,
+    a.navbar-item.active,
+    a.navbar-item:focus {
+            background: transparent;
+            color: currentColor;
+            text-decoration: none;
+    }
+    .navbar-start a.navbar-item {
+        position: relative;
+        margin-right: 15px;
+        font-weight: 500;
+        font-size: 20px;
+
+        &:hover,
+        &.active,
+        &:focus {
+            &::after {
+                transform: scale(1);
+            }
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            background: #fff;
+            width: 100%;
+            height: 2px;
+            bottom: -4px;
+            transform: scale(0);
+            transition: all 0.25s ease;
+        }
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+}
+
+.center-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.bracket-list {
+    margin-top: 35px;
+    margin-bottom: 70px;
+}
+
+.bktcard {
+    position: relative;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 2px 15px 2px rgba(#000, 0.068);
+    transition: box-shadow 0.2s ease-out;
+    margin-bottom: 25px;
+    
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0px 0px 0px 4px rgba(#000,0.068);
+
+        .bktcard__deletebutton {
+            opacity: 1;
+            transition-delay: 0.35s;
+            transform: scale(1);
+        }
+        .bktcard__editbutton {
+            opacity: 1;
+            transition-delay: 0.35s;
+            transform: scale(1);
+        }
+    }
+}
+.bktcard__content {
+    padding: 25px;
+}
+.bktcard__date {
+    opacity: 0.6;
+}
+.bktcard__body {
+    position: relative;
+    max-height: 80px;
+    overflow: hidden;
+    color: #555;
+    opacity: 0.6;
+
+    .fade-out-truncation {
+        pointer-events: none;
+        position: absolute;
+        bottom: 0;
+        height: 50%;
+        width: 100%;
+        background: linear-gradient(to bottom, rgba(white, 0) 0%, rgba(white, 0.8) 50%, white 100%);
+    }
+}
+.bktcard__id {
+    font-size: 22px;
+    font-weight: bold;
+    color: $purple;
+}
+.bktcard__deletebutton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    height: 34px;
+    width: 34px;
+    background: $light-red;
+    border-radius: 4px;
+    background-image: url('./assets/dist/img/delete_icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    transform: scale(0.35);
+
+    &:hover {
+        background-color: darken($light-red, 2%);
+    }
+
+    &:active {
+        background-color: darken($light-red, 4%);
+    }
+}
+
+.bktcard__editbutton {
+    position: absolute;
+    top: 12px;
+    right: 60px;
+    height: 34px;
+    width: 34px;
+    background: #4cbfed24;
+    color: #4cbfed;
+    border-radius: 4px;
+    // background-image: url('./assets/dist/img/delete_icon.svg');
+    // background-repeat: no-repeat;
+    // background-position: center;
+    opacity: 0;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    transform: scale(0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background-color: darken(#4cbfed24, 2%);
+    }
+
+    &:active {
+        background-color: darken(#4cbfed24, 4%);
+    }
+}
+
+.bracket-detail-container {
+    max-width: 500px;
+    margin: auto;
+    margin-top: 50px;
+}
+input, textarea {
+    &.ng-invalid.ng-touched {
+        border-color: red;
+
+        &:focus {
+            box-shadow: 0px 0px 0px 2px rgba(red, 0.1);
+        }
+    }
+}
+
+.floating-add-button {
+    position: fixed;
+    bottom: 0;
+    width: 500px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 0;
+    box-shadow: 0px 0px 15px 5px rgba($purple, 0.2);
+
+    .fa {
+        font-size: 16px;
+    }
+}
+
+.is-invalid {
+    border: 1px solid red;
+}

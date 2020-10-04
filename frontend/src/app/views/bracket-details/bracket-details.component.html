@@ -1,0 +1,38 @@
+<div class="bracket-detail-container">
+    <form [formGroup]="bracketDtlsForm">
+        <div class="field">
+            <label class="label">Bracket Id</label>
+            <div class="control">
+                <input type="text" required class="input" name="id" formControlName="id" [ngClass]="{ 'is-invalid' : submitted && f.title.errors }">
+            </div>
+        </div>
+
+        <br>
+
+        <div class="field">
+            <label class="label">Info</label>
+            <div class="control">
+                <textarea class="textarea" name="info" formControlName="info" [ngClass]="{ 'is-invalid' : submitted && f.body.errors }"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Date</label>
+            <div class="control">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" name="date" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="field is-grouped is-pulled-right">
+            <div class="control">
+                <button class="button is-text" (click)="fun_Reset_Form()">Cancel</button>
+                <button class="button is-success" type="button" (click)="fun_Save_Bracket()">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
