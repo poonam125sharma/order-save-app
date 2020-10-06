@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require('./app/models');
 db.mongoose.connect(db.url, {
-  newUrlParser: true,
+  useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
   console.log("Connected to the database");
@@ -31,6 +31,8 @@ db.mongoose.connect(db.url, {
 app.get('/',(req,res) => {
   res.json({message: "Welcome to the Order Store app"});
 });
+
+require('./app/routes/bracket.routes')(app);
 
 // set ports, listen for requests
 const PORT = process.env.PORT || 8080;
