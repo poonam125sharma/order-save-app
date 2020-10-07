@@ -32,7 +32,7 @@ app.get('/',(req,res) => {
   res.json({message: "Welcome to the Order Store app"});
 });
 
-require('./app/routes/bracket.routes')(app);
+require('./app/routes/bracket.routes.js')(app);
 
 // set ports, listen for requests
 const PORT = process.env.PORT || 8080;

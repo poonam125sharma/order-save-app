@@ -1,22 +1,22 @@
 module.exports = app => {
-  const brackets = require('../controllers/bracket.controller.js');
+  const bracket = require('../controllers/bracket.controller.js');
 
   var router = require('express').Router();
 
   // Create a new bracket
-  router.post('/', brackets.createBracket);
+  router.post('/', bracket.addBracket);
 
   // Retrieve all brackets
-  router.get('/', brackets.getAllBrackets);
+  router.get('/', bracket.getAllBrackets);
 
   // Update a bracket
-  router.put('/:id', brackets.updateBracket);
+  router.put('/:id', bracket.updateBracket);
 
   // Get a bracket with id
-  router.get('/:id', brackets.getBracket);
+  router.get('/:id', bracket.getBracket);
 
   // Delete a bracket
-  router.delete('/:id', brackets.deleteBracket);
+  router.delete('/:id', bracket.deleteBracket);
 
-  app.use('api/brackets', router);
-}
+  app.use('/api/brackets', router);
+};

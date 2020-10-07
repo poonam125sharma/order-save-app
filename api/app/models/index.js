@@ -6,6 +6,6 @@ const mongoose = require("mongoose");
 const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-db.brackets = require("./bracket.model.js")(mongoose);
+db.bracket = require("./bracket.model.js")(mongoose);
 
 module.exports = db;

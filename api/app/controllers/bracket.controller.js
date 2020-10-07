@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models/");
 const Bracket = db.bracket;
 
 // Get all brackets from the database
@@ -36,13 +36,12 @@ exports.addBracket = (req, res) => {
               res.status(401).json({'status':'false','error':'required parameter bracket date'});
           }else{
             let bracket = new Bracket(userData);
-            bracket.save(err, savedBracket) => {
-              if(err) {
-                  res.status(500).json({'status':'false','error':err});
-              }else{
-                res.status(200).json({'status':'true','error':''});
-              }
-            }
+            bracket.save(bracket).then(data => {
+              res.status(200).json({'status':'true','error':''});
+            })
+            .catch(err => {
+              res.status(500).json({'status':'false','error':err});
+            });
           }
         }
       }
@@ -53,6 +52,7 @@ exports.addBracket = (req, res) => {
 // Update Bracket
 exports.updateBracket = (req, res) => {
   let userData = req.body;
+  const id = req.params.id;
   if(Object.keys(userData).length == 0) {
       res.status(401).json({'status':'false','error':'empty payload'});
   }else{
@@ -71,13 +71,15 @@ exports.updateBracket = (req, res) => {
               res.status(401).json({'status':'false','error':'required parameter bracket date'});
           }else{
             let bracket = new Bracket(userData);
-            bracket.save(err, savedBracket) => {
-              if(err) {
-                  res.status(500).json({'status':'false','error':err});
+            Bracket.findOneAndUpdate({ "bracket_id" : id }, userData, { useFindAndModify: false }).then(data => {
+              if (!data) {
+                res.status(404).json({'status':'false','error':`Bracket not found with id ${id}`});
               }else{
                 res.status(200).json({'status':'true','error':''});
               }
-            }
+            }).catch(err => {
+              res.status(500).json({'status':'false','error': 'Error updating bracket : ' + err});
+            });
           }
         }
       }
@@ -106,7 +108,7 @@ exports.getBracket = (req, res) => {
 exports.deleteBracket = (req, res) => {
   const id = req.params.id;
 
-  Bracket.findByIdAndRemove(id)
+  Bracket.findOneAndDelete({'bracket_id': id},{ useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
@@ -115,7 +117,7 @@ exports.deleteBracket = (req, res) => {
         });
       } else {
         res.send({
-          'status': 'false',
+          'status': 'true',
           'error': 'Bracket was deleted successfully!'
         });
       }
