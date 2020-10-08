@@ -24,7 +24,7 @@ export class BracketDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.bracketDtlsForm = this.formBuilder.group({
-      id: ['', Validators.required],
+      bracket_id: ['', Validators.required],
       info: ['', Validators.required],
       date: ['']
     });
@@ -32,14 +32,18 @@ export class BracketDetailsComponent implements OnInit {
     // Check if bracket is new or existing by routing
     this.route.params.subscribe((params: Params) => {
       if (params.id) {
-        const bracket = this.bracketService.getBracket(params.id);
-        if (bracket) {
-          this.bracketId = params.id;
-          this.newBracket = false;
-          this.fun_Populate_Edit_Form(bracket);
-        } else {
-          this.newBracket = true;
-        }
+        this.bracketService.getBracket(params.id).subscribe((response) => {
+          if (response && response.status === 'true') {
+            const bracket = response.data;
+            if (bracket) {
+              this.bracketId = params.id;
+              this.newBracket = false;
+              this.fun_Populate_Edit_Form(bracket);
+            } else {
+              this.newBracket = true;
+            }
+          }
+        });
       } else {
         this.newBracket = true;
       }
@@ -60,11 +64,15 @@ export class BracketDetailsComponent implements OnInit {
     const formData = this.bracketDtlsForm.value;
 
     if (this.newBracket) {
-      this.bracketService.addBracket(formData);
+      this.bracketService.addBracket(formData).subscribe(() => {
+        this.router.navigateByUrl('/bracket');
+      });
     } else {
-      this.bracketService.updateBracket(this.bracketId, formData);
+      this.bracketService.updateBracket(this.bracketId, formData).subscribe(() => {
+        this.router.navigateByUrl('/bracket');
+      });
     }
-    this.router.navigateByUrl('/bracket');
+    // this.router.navigateByUrl('/bracket');
   }
 
   fun_Reset_Form() {
@@ -75,7 +83,7 @@ export class BracketDetailsComponent implements OnInit {
 
   fun_Populate_Edit_Form(bracketObj: Bracket) {
     this.bracketDtlsForm.setValue({
-      id: bracketObj.id,
+      bracket_id: bracketObj.bracket_id,
       info: bracketObj.info,
       date: bracketObj.date
     });

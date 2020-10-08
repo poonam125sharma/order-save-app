@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, Input } from '@angular/core';
-import { SrvBracketService } from 'src/app/core/services/srv-bracket.service';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-bracket-card',
@@ -10,13 +9,13 @@ export class BracketCardComponent implements OnInit {
   @Input() id: string;
   @Input() info: string;
   @Input() date: any;
+  @Output() delete: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('truncator', {static: true}) truncator: ElementRef<HTMLElement>;
   @ViewChild('bodytext', {static: true}) bodytext: ElementRef<HTMLElement>;
 
   constructor(
-    private renderer: Renderer2,
-    private bracketService: SrvBracketService
+    private renderer: Renderer2
   ) { }
 
   ngOnInit() {
@@ -31,7 +30,7 @@ export class BracketCardComponent implements OnInit {
   }
 
   fun_Delete_Bracket(id: string) {
-    this.bracketService.deleteBracket(id);
+    this.delete.emit(id);
   }
 
 }

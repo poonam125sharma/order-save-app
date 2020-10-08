@@ -5,7 +5,7 @@ const Bracket = db.bracket;
 exports.getAllBrackets = (req, res) => {
     let bracket = Bracket.find({})
       .then(data => {
-        res.send({'status':'true','error':'','data':data});
+        res.status(200).send({'status':'true','error':'','data':data});
       })
       .catch(err => {
         res.status(500).send({
@@ -93,7 +93,7 @@ exports.getBracket = (req, res) => {
   if(bracketId) {
     let bracket = Bracket.find({"bracket_id":bracketId})
       .then(data => {
-        res.send({'status':'true','error':'','data':data});
+        res.send({'status':'true','error':'','data':data[0]});
       })
       .catch(err => {
         res.status(500).send({

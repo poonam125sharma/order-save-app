@@ -3,7 +3,7 @@
         <div class="field">
             <label class="label">Bracket Id</label>
             <div class="control">
-                <input type="text" required class="input" name="id" formControlName="id" [ngClass]="{ 'is-invalid' : submitted && f.title.errors }">
+                <input type="text" required class="input" name="bracket_id" formControlName="bracket_id" [ngClass]="{ 'is-invalid' : submitted && f.bracket_id.errors }">
             </div>
         </div>
 
@@ -12,7 +12,7 @@
         <div class="field">
             <label class="label">Info</label>
             <div class="control">
-                <textarea class="textarea" name="info" formControlName="info" [ngClass]="{ 'is-invalid' : submitted && f.body.errors }"></textarea>
+                <textarea class="textarea" name="info" formControlName="info" [ngClass]="{ 'is-invalid' : submitted && f.info.errors }"></textarea>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
             <div class="control">
                 <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
-                    <input matInput [matDatepicker]="picker" name="date" formControlName="date">
+                    <input matInput [matDatepicker]="picker" name="date" formControlName="date" [ngClass]="{ 'is-invalid' : submitted && f.date.errors }">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>

@@ -1,5 +1,5 @@
 export class Bracket {
-    public id: string;
+    public bracket_id: string;
     public info: any;
     public date: string;
 }

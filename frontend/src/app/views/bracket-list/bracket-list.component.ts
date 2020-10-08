@@ -89,7 +89,23 @@ export class BracketListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.bktList = this.bracketService.getAllBrackets();
+    this.fun_Get_Brackets();
+  }
+
+  fun_Get_Brackets() {
+    this.bracketService.getAllBrackets().subscribe((response) => {
+      if (response && response.status === 'true') {
+        this.bktList = response.data;
+      }
+    });
+  }
+
+  fun_Delete_Bracket($event: any) {
+    this.bracketService.deleteBracket($event).subscribe((response) => {
+      if (response && response.status === 'true') {
+        this.fun_Get_Brackets();
+      }
+    });
   }
 
 }

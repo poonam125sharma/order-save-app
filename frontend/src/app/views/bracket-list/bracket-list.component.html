@@ -13,9 +13,11 @@
         <app-bracket-card 
         *ngFor="let bkt of bktList; index as i" 
         [@itemAnim]  
-        [id]="bkt.id" 
+        [id]="bkt.bracket_id" 
         [info]="bkt.info"
-        [date]="bkt.date"></app-bracket-card>
+        [date]="bkt.date"
+        (delete)="fun_Delete_Bracket($event)"
+        ></app-bracket-card>
     </div>
 
     <button class="button is-primary floating-add-button" routerLink="/bracket/new"><i class="fa fa-plus"></i>&nbsp;Add</button>
