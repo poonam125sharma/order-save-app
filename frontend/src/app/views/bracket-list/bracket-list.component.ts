@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Bracket } from 'src/app/core/models/bracket.model';
 import { SrvBracketService } from 'src/app/core/services/srv-bracket.service';
+import { SrvMsgTransferService } from './../../core/services/srv-msg-transfer.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 @Component({
@@ -85,14 +86,15 @@ export class BracketListComponent implements OnInit {
   bktList: Bracket[];
 
   constructor(
-    private bracketService: SrvBracketService
+    private bracketService: SrvBracketService,
+    private msgTransferService: SrvMsgTransferService
   ) { }
 
   ngOnInit() {
-    this.fun_Get_Brackets();
+    this.fun_Get_Brackets_List();
   }
 
-  fun_Get_Brackets() {
+  fun_Get_Brackets_List() {
     this.bracketService.getAllBrackets().subscribe((response) => {
       if (response && response.status === 'true') {
         this.bktList = response.data;
@@ -103,7 +105,15 @@ export class BracketListComponent implements OnInit {
   fun_Delete_Bracket($event: any) {
     this.bracketService.deleteBracket($event).subscribe((response) => {
       if (response && response.status === 'true') {
-        this.fun_Get_Brackets();
+        this.fun_Get_Brackets_List();
+      }
+    });
+  }
+
+  fun_View_Bracket($event: any) {
+    this.bracketService.getBracket($event).subscribe((response) => {
+      if (response && response.status === 'true') {
+        this.msgTransferService.initBracketInfo(response.data);
       }
     });
   }

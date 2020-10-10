@@ -1,5 +1,5 @@
-<div class="bracket-view">
-    <div class="bracket-date"><strong>Date: </strong><span></span></div>
-    <div class="bracket-id"><strong>Bracket Id: </strong><span></span></div>
-    <div class="bracket-info"><strong>Bracket Info</strong><span></span></div>
+<div class="bracket-view" *ngIf="bracketInfo.bracket_id">
+    <div class="bracket-date"><strong>Date: </strong><span>{{bracketInfo.date}}</span></div>
+    <div class="bracket-id"><strong>Bracket Id: </strong><span>{{bracketInfo.bracket_id}}</span></div>
+    <div class="bracket-info"><strong>Bracket Info</strong><span>{{bracketInfo.info}}</span></div>
 </div>

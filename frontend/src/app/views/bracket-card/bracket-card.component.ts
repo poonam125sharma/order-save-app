@@ -10,6 +10,7 @@ export class BracketCardComponent implements OnInit {
   @Input() info: string;
   @Input() date: any;
   @Output() delete: EventEmitter<any> = new EventEmitter();
+  @Output() view: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('truncator', {static: true}) truncator: ElementRef<HTMLElement>;
   @ViewChild('bodytext', {static: true}) bodytext: ElementRef<HTMLElement>;
@@ -31,6 +32,10 @@ export class BracketCardComponent implements OnInit {
 
   fun_Delete_Bracket(id: string) {
     this.delete.emit(id);
+  }
+
+  fun_View_Bracket(id: string) {
+    this.view.emit(id);
   }
 
 }

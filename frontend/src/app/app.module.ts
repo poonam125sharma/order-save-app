@@ -16,6 +16,7 @@ import { LayoutComponent } from './shared/layout/layout.component';
 import { BracketCardComponent } from './views/bracket-card/bracket-card.component';
 import { BracketDetailsComponent } from './views/bracket-details/bracket-details.component';
 import { BracketViewComponent } from './views/bracket-view/bracket-view.component';
+import { HomeComponent } from './views/home/home.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { BracketViewComponent } from './views/bracket-view/bracket-view.componen
     LayoutComponent,
     BracketCardComponent,
     BracketDetailsComponent,
-    BracketViewComponent
+    BracketViewComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
