@@ -141,9 +141,13 @@
     width: 34px;
     background: $light-red;
     border-radius: 4px;
-    background-image: url('./assets/dist/img/delete_icon.svg');
-    background-repeat: no-repeat;
-    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #dc3900;
+    // background-image: url('./assets/dist/img/delete_icon.svg');
+    // background-repeat: no-repeat;
+    // background-position: center;
     opacity: 0;
     transition: opacity 0.2s ease-out, transform 0.2s ease-out;
     transform: scale(0.35);

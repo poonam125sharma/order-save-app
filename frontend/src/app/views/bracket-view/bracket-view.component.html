@@ -1,8 +1,18 @@
-<div class="center-container-wrapper bktcard"  *ngIf="bracketInfo.bracket_id">
-    <div class="bracket-view">
-        <div class="bracket-date"><strong>Date: </strong><span>{{bracketInfo.date}}</span></div>
-        <div class="bracket-id"><strong>Bracket Id: </strong><span>{{bracketInfo.bracket_id}}</span></div>
-        <div class="bracket-info"><strong>Bracket Info</strong><span>{{bracketInfo.info}}</span></div>
+<div class="center-container-wrapper bktcard"  *ngIf="bracketInfo && bracketInfo.bracket_id">
+    <div class="bracket-view mr-5">
+        <div class="columns">
+            <div class="column">
+                <h4 class="col-title">Braket Id</h4>
+                <h4 class="bktcard__id">{{ bracketInfo.bracket_id }}</h4>
+            </div>
+            <div class="column">
+                <h4 class="col-title">Date</h4>
+                <h4 class="bktcard__date">{{ bracketInfo.date | date: 'dd/MM/yyyy' }}</h4>
+            </div>
+        </div>
+        <div class="bracket-info bktcard__body">
+            <div>{{bracketInfo.info}}</div>
+        </div>
     </div>
-    <div class="bktcard__deletebutton" (click)="fun_Delete_Bracket(id)"></div>
+    <div class="bktcard__deletebutton" (click)="fun_Close_View()"><i class="fa fa-times"></i></div>
 </div>

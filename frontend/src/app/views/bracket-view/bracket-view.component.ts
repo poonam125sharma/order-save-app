@@ -28,4 +28,8 @@ export class BracketViewComponent implements OnInit, OnDestroy {
     this.bracketInfoSubscription.unsubscribe();
   }
 
+  fun_Close_View(): void {
+    this.bracketInfo = null;
+  }
+
 }
