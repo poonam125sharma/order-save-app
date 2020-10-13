@@ -19,7 +19,19 @@ export class BracketViewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.bracketInfoSubscription = this.msgTransferService.bracketInfo$.subscribe(value => {
-      this.bracketInfo = value;
+      if (Object.keys(value).length > 0) {
+        // const bktInfo = value;
+        // console.log(value);
+        // const info = JSON.parse(JSON.stringify(bktInfo.info));
+        // console.log(info);
+        // console.log(value.info.bracket_side);
+        // bktInfo.info = JSON.parse(bktInfo.info);
+        // console.log(typeof(bktInfo.info));
+        // console.log(bktInfo.info.bracket_side);
+        // this.bracketInfo = bktInfo;
+        // console.log(this.bracketInfo);
+        this.bracketInfo = value;
+      }
     });
   }
 

@@ -17,6 +17,7 @@ import { BracketCardComponent } from './views/bracket-card/bracket-card.componen
 import { BracketDetailsComponent } from './views/bracket-details/bracket-details.component';
 import { BracketViewComponent } from './views/bracket-view/bracket-view.component';
 import { HomeComponent } from './views/home/home.component';
+import { PrettyjsonPipe } from './core/pipes/prettyjson.pipe';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HomeComponent } from './views/home/home.component';
     BracketCardComponent,
     BracketDetailsComponent,
     BracketViewComponent,
-    HomeComponent
+    HomeComponent,
+    PrettyjsonPipe
   ],
   imports: [
     BrowserModule,
