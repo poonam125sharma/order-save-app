@@ -11,8 +11,12 @@
             </div>
         </div>
         <div class="bracket-info bktcard__body">
+            <div class="bktcard__copybutton" (click)="fun_Copy_Info(bracketInfo.info)"><i class="fa fa-copy"></i></div>
             <pre>{{bracketInfo.info}}</pre>
         </div>
     </div>
     <div class="bktcard__deletebutton" (click)="fun_Close_View()"><i class="fa fa-times"></i></div>
 </div>
+
+<textarea name="copyInfo" id="copyInfo" #copyInfo style="position:absolute;left:0;right:0;bottom:0;top:0;height: 0;
+width: 0;"></textarea>

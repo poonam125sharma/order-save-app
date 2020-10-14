@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { SrvMsgTransferService } from 'src/app/core/services/srv-msg-transfer.service';
 import { Bracket } from 'src/app/core/models/bracket.model';
 import { Subscription } from 'rxjs';
@@ -12,6 +12,7 @@ export class BracketViewComponent implements OnInit, OnDestroy {
 
   bracketInfo: Bracket = null;
   bracketInfoSubscription: Subscription;
+  @ViewChild('copyInfo', {static: false}) copyInfo: ElementRef;
 
   constructor(
     private msgTransferService: SrvMsgTransferService
@@ -42,6 +43,12 @@ export class BracketViewComponent implements OnInit, OnDestroy {
 
   fun_Close_View(): void {
     this.bracketInfo = null;
+  }
+
+  fun_Copy_Info(value: any): void {
+    this.copyInfo.nativeElement.value = value;
+    this.copyInfo.nativeElement.select();
+    document.execCommand('copy');
   }
 
 }
